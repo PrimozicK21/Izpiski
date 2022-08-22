@@ -19,7 +19,7 @@ stanje = Stanje([
 def vpis():
     print("vpis")
     print("Živjo, izberi predmet:")
-    izberi_predmet(stanje)
+    izberi_iz_razreda(stanje)
     
 
 def registracija():
@@ -62,24 +62,22 @@ def ponudi_moznosti_za_normalen_seznam(seznam_moznosti):
         except (ValueError, IndexError) as e:
             print(f"Vnesiti morate celo število med 1 in {len(seznam_moznosti)}.")
 #izbira_predmeta______________________________________________________________________________________________________             
-def izberi_predmet(stanje):
-    vsi_predmeti = []
-    for predmet in stanje.seznam_predmetov:
-        vsi_predmeti.append(predmet.ime_predmeta)
+def izberi_iz_razreda(razred):
+    seznam_iz_razreda = []
+    for element_seznama in razred.seznam:
+        seznam_iz_razreda.append(element_seznama.ime)
     
-    izbran_predmet = ponudi_moznosti_za_normalen_seznam(vsi_predmeti)
+    izbran_element = ponudi_moznosti_za_normalen_seznam(seznam_iz_razreda)
     
-    for predmet in stanje.seznam_predmetov:
-        if predmet.ime_predmeta == izbran_predmet:
-            seznam_poglavij_izbranega_predmeta = predmet.seznam_poglavij
-            
-    izberi_poglvje(seznam_poglavij_izbranega_predmeta)
+    for element_seznama in razred.seznam:
+        if element_seznama.ime == izbran_element:
+            izberi_iz_razreda(element_seznama)
 #_____________________________________________________________________________________________________________________        
 
 #izbira_poglavij______________________________________________________________________________________________________
 def izberi_poglvje(seznam_poglavij):
     ponudi_moznosti_za_normalen_seznam(seznam_poglavij)
-______________________________________________________________________________________________________________________
+#______________________________________________________________________________________________________________________
 #tekstovni vmesnik____________________________________________________________________________________________________
 def tekstovni_vmesnik():
     zacetni_pozdrav()
