@@ -1,25 +1,25 @@
 class Stanje:
-    def __init__(self, seznam_predmetov):
+    def __init__(self, seznam): #seznam_predmetov
         self.seznam_predmetov = seznam_predmetov
         
     def dodaj_predmet(self, predmet):
-        self.seznam_predmetov.append(predmet)     
+        self.seznam.append(predmet)     
 
 class Predmet:
-    def __init__(self, ime_predmeta, seznam_poglavij):
-        self.ime_predmeta = ime_predmeta
-        self.seznam_poglavij = seznam_poglavij
+    def __init__(self, ime, seznam): #ime_predmeta #seznam_poglavij
+        self.ime = ime
+        self.seznam = seznam
         
     def dodaj_poglavje(self, poglavje):
-        self.seznam_poglavij.append(poglavje)
+        self.seznam.append(poglavje)
 
 class Poglavje:
-    def __init__(self, ime_poglavja, seznam_alinej):
-        self.ime_poglavja = ime_poglavja
-        self.seznam_alinej = seznam_alinej
+    def __init__(self, ime, seznam): #ime_poglavja #seznam_alinej
+        self.ime = ime
+        self.seznam = seznam
         
     def dodaj_alinejo(self, alineja):
-        self.seznam_alinej.append(alineja)
+        self.seznam.append(alineja)
 
 class Alineja:
     def __init__(self, vprasanje, odgovor, opravljeno):
