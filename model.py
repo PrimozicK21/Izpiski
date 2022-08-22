@@ -2,7 +2,7 @@ class Ucilnica:
     def __init__(self, seznam): #seznam_predmetov
         self.seznam = seznam
         
-    def dodaj_predmet(self, predmet):
+    def dodaj(self, predmet):
         self.seznam.append(predmet)     
 
 class Predmet:
@@ -10,7 +10,7 @@ class Predmet:
         self.ime = ime
         self.seznam = seznam
         
-    def dodaj_poglavje(self, poglavje):
+    def dodaj(self, poglavje):
         self.seznam.append(poglavje)
 
 class Poglavje:
@@ -18,12 +18,12 @@ class Poglavje:
         self.ime = ime
         self.seznam = seznam
         
-    def dodaj_alinejo(self, alineja):
+    def dodaj(self, alineja):
         self.seznam.append(alineja)
 
 class Alineja:
-    def __init__(self, vprasanje, odgovor, opravljeno):
-        self.vprasanje = vprasanje
+    def __init__(self, ime, odgovor, opravljeno=False): #ime_alineje
+        self.ime = ime
         self.odgovor = odgovor
         self.opravljeno = opravljeno
         
