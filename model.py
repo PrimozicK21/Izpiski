@@ -1,6 +1,6 @@
 class Stanje:
     def __init__(self, seznam): #seznam_predmetov
-        self.seznam_predmetov = seznam_predmetov
+        self.seznam = seznam
         
     def dodaj_predmet(self, predmet):
         self.seznam.append(predmet)     
