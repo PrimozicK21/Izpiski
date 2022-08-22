@@ -1,4 +1,4 @@
-class Stanje:
+class Ucilnica:
     def __init__(self, seznam): #seznam_predmetov
         self.seznam = seznam
         

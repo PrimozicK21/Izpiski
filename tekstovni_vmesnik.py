@@ -1,5 +1,5 @@
-from model import Stanje, Predmet, Poglavje, Alineja
-stanje = Stanje([
+from model import Ucilnica, Predmet, Poglavje, Alineja
+ucilnica = Ucilnica([
     Predmet(
         "Matematika",[
             Poglavje("Odvodi", [
@@ -19,7 +19,7 @@ stanje = Stanje([
 def vpis():
     print("vpis")
     print("Živjo, izberi predmet:")
-    izberi_iz_razreda(stanje)
+    #izberi_iz_razreda(stanje)
     
 
 def registracija():
@@ -71,13 +71,16 @@ def izberi_iz_razreda(razred):
     
     for element_seznama in razred.seznam:
         if element_seznama.ime == izbran_element:
-            izberi_iz_razreda(element_seznama)
+            return element_seznama 
+        # izberi_iz_razreda(element_seznama)
 #_____________________________________________________________________________________________________________________        
 
 #tekstovni vmesnik____________________________________________________________________________________________________
 def tekstovni_vmesnik():
     zacetni_pozdrav()
     ponudi_moznosti_za_seznam_zacetnih_moznosti(zacetne_moznosti)()
+    predmet = izberi_iz_razreda(ucilnica)
+    poglavje = izberi_iz_razreda(predmet)
 
         
                 
