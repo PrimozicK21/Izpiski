@@ -1,5 +1,6 @@
 class Ucilnica:
-    def __init__(self, seznam): #seznam_predmetov
+    def __init__(self, ime, seznam): #seznam_predmetov
+        self.ime = ime
         self.seznam = seznam
         
     def dodaj(self, predmet):

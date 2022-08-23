@@ -1,6 +1,6 @@
 from model import Ucilnica, Predmet, Poglavje, Alineja
 
-ucilnica = Ucilnica([
+ucilnica = Ucilnica("Učilnica", [
     Predmet(
         "Matematika",[
             Poglavje("Odvodi", [
@@ -68,6 +68,7 @@ def ponudi_moznosti_za_normalen_seznam(seznam_moznosti):
 #tip_razreda = ["predmet", "poglavje", "alineja"]
 # izbire______________________________________________________________________________________________________             
 def izberi_iz_razreda(razred, tip_razreda):
+    print(razred.ime)                                #pri razredu Ucilnica moras zato dodati atribut ime
     if razred == None:
         seznam_moznosti = ["dodaj", "Nazaj"]
         izbran_element = ponudi_moznosti_za_normalen_seznam(seznam_iz_razreda)
@@ -93,21 +94,30 @@ def izberi_iz_razreda(razred, tip_razreda):
             if tip_razreda == "poglavje":
                 return izberi_iz_razreda(element_seznama, "alineja")
             if tip_razreda == "alineja":
-                print(element_seznama.odgovor)
-                return element_seznama.odgovor
+                print(f"Vprašanje: {element_seznama.ime}")
+                print(f"Odgovor: {element_seznama.odgovor}")
+                cakanje_na_enter = input()
+                for predmet in ucilnica.seznam:
+                    for poglavje in predmet.seznam:
+                        if element_seznama in poglavje.seznam:                               
+                            return izberi_iz_razreda(poglavje, "alineja")
+            
+                #return izberi_iz_razreda(element_seznama, "alineja")
     
     #posebne_izbire-----------------------------------------------------   
+        #dodaj_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
     if izbran_element == "dodaj":
         if tip_razreda == "predmet":
             predmet = dodaj_predmet()
-            return izberi_iz_razreda(predmet, "poglavje")
+            return izberi_iz_razreda(ucilnica, "poglavje")
         if tip_razreda == "poglavje":
             poglavje = dodaj_poglavje(razred)
-            return izberi_iz_razreda(poglavje, "alineja")
+            return izberi_iz_razreda(predmet, "alineja")
         if tip_razreda == "alineja":
+            poglavje = dodaj_alinejo(razred)
             print("Alineja dodana")
-            return izberi_iz_razreda(element_seznama, "alineja")
-    #nazaj--------------------------------------------------------------    
+            return izberi_iz_razreda(poglavje, "alineja")
+        #nazaj-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
     elif izbran_element == "nazaj":
         if tip_razreda == "predmet":
             return exit()
@@ -127,26 +137,26 @@ def izberi_iz_razreda(razred, tip_razreda):
             izberi_iz_razreda(poglavje, "alineje")
                     
 #dodaj_____________________________________________________________________________________________________________________        
-def dodaj_predmet():
+def dodaj_predmet():                             #ne rabis spremenljivke, ker obstaja samo ena ucilnica
     ime_predmeta = input("Ime predmeta: ")
     predmet = Predmet(ime_predmeta, [])
     #dodaj_poglavje()
     ucilnica.dodaj(predmet)
-    return predmet
+    return ucilnica
 
-def dodaj_poglavje(razred):
+def dodaj_poglavje(predmet):
     ime_poglavja = input("Ime poglavja: ")
     poglavje = Poglavje(ime_poglavja, [])
     
-    razred.dodaj(poglavje)
-    return poglavje
+    predmet.dodaj(poglavje)
+    return predmet
 
 def dodaj_alinejo(poglavje):
     vprasanje = input("Vprasanje: ")
     odgovor = input("Odgovor: ")
     alineja = Alineja(vprasanje, odgovor, False)
     poglavje.dodaj(alineja)
-    return alineja
+    return poglavje
 
 #nazaj_____________________________________________________________________________________________________________
 def nazaj(razred):
