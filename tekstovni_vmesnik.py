@@ -1,20 +1,30 @@
 from model import Ucilnica, Predmet, Poglavje, Alineja
+import json
+import os
 
-ucilnica = Ucilnica("Učilnica", [
-    Predmet(
-        "Matematika",[
-            Poglavje("Odvodi", [
-                Alineja("vpr ✅", "odgovor"),
-                Alineja("vpr2 ✅", "odg2")]),
-            Poglavje("Integrali", [
-                Alineja("vpr3 ✅", "odg3")])]),
-    Predmet(
-        "Slovenščina", [
-            Poglavje("Renesansa", [
-                Alineja("vpr4 ✅", "odg4")])]
-        )]
-)
+IME_DATOTEKE = "stanje.json"
+try:
+    ucilnica = Ucilnica.preberi_iz_datoteke(IME_DATOTEKE)
+except FileNotFoundError:
+    with open(IME_DATOTEKE, "w") as dat:
+        ucilnica = Ucilnica("Učilnica", [])
+        ucilnica.shrani_v_datoteko(IME_DATOTEKE)
+        ucilnica = Ucilnica.preberi_iz_datoteke(IME_DATOTEKE)
 
+# ucilnica = Ucilnica("Učilnica", [
+#     Predmet(
+#         "Matematika",[
+#             Poglavje("Odvodi", [
+#                 Alineja("vpr ✅", "odgovor"),
+#                 Alineja("vpr2 ✅", "odg2")]),
+#             Poglavje("Integrali", [
+#                 Alineja("vpr3 ✅", "odg3")])]),
+#     Predmet(
+#         "Slovenščina", [
+#             Poglavje("Renesansa", [
+#                 Alineja("vpr4 ✅", "odg4")])]
+#         )]
+# )
 
 #zacetne funkcije_______________________________________________________________________________________________________
 def vpis():
@@ -31,7 +41,9 @@ def registracija():
     print("registracija")
 
 def izhod():
+    ucilnica.shrani_v_datoteko(IME_DATOTEKE)
     print("Nasvidenje!")
+    print(ucilnica.preberi_iz_datoteke(IME_DATOTEKE))
     exit()
     
 
@@ -67,25 +79,19 @@ def ponudi_moznosti_za_normalen_seznam(seznam_moznosti):
 
 #tip_razreda = ["predmet", "poglavje", "alineja"]
 # izbire______________________________________________________________________________________________________             
-def izberi_iz_razreda(razred, tip_razreda):
-    print(razred.ime)                                #pri razredu Ucilnica moras zato dodati atribut ime
-    # if razred == None:
-    #     seznam_moznosti = ["dodaj", "Nazaj"]
-    #     izbran_element = ponudi_moznosti_za_normalen_seznam(seznam_iz_razreda)
-    #     if izbran_element == "dodaj":
-    #         if tip_razreda == "poglavje":
-    #             poglavje = dodaj_poglavje(razred)
-    #elementi_v_seznam-----------------------------------------------------------
-    seznam_iz_razreda = []
+def izberi_iz_razreda(razred, tip_razreda, ucilnica=ucilnica):  #ucilnica=ucilnica, da ti spremenljivko poveze s pojmom ucilnica, ki je definiran na zacetku
+    print(razred.ime.upper())                                #pri razredu Ucilnica moras zato dodati atribut ime
     
-
-        
+    #pojmi_v_seznam-----------------------------------------------------------
+    seznam_iz_razreda = []
     for element_seznama in razred.seznam:
         seznam_iz_razreda.append(element_seznama.ime)
     #dodaj = "dodaj" + tip_razreda
     seznam_iz_razreda.append("dodaj")
     seznam_iz_razreda.append("izbriši")
-    seznam_iz_razreda.append("nazaj")
+    if tip_razreda != "predmet":
+        seznam_iz_razreda.append("nazaj")    
+    seznam_iz_razreda.append("izhod")
     
     izbran_element = ponudi_moznosti_za_normalen_seznam(seznam_iz_razreda)
     
@@ -124,11 +130,11 @@ def izberi_iz_razreda(razred, tip_razreda):
         #dodaj_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
     if izbran_element == "dodaj":
         if tip_razreda == "predmet":
-            predmet = dodaj_predmet()
-            return izberi_iz_razreda(ucilnica, "poglavje")
+            ucilnica = dodaj_predmet()
+            return izberi_iz_razreda(ucilnica, "predmet")
         if tip_razreda == "poglavje":
-            poglavje = dodaj_poglavje(razred)
-            return izberi_iz_razreda(predmet, "alineja")
+            predmet = dodaj_poglavje(razred)
+            return izberi_iz_razreda(predmet, "poglavje")
         if tip_razreda == "alineja":
             poglavje = dodaj_alinejo(razred)
             print("Alineja dodana")
@@ -147,18 +153,21 @@ def izberi_iz_razreda(razred, tip_razreda):
             izbrisi_podrazred(razred, "alineja")  #ta funkcija ti bo izbrala alinejo, ki jo zelis izbrisat
             return izberi_iz_razreda(razred, "alineja")
             
-        # #nazaj-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+        #nazaj-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
     elif izbran_element == "nazaj":
         if tip_razreda == "predmet":
-            return exit()
+            return izhod()
         elif tip_razreda == "poglavje":
             return izberi_iz_razreda(ucilnica, "predmet")
         elif tip_razreda == "alineja":
             for predmet in ucilnica.seznam:
                 if razred in predmet.seznam:                                #razred = poglavje
                     return izberi_iz_razreda(predmet, "poglavje")
+        #izhod_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+    elif izbran_element == "izhod":
+        izhod()
     #ce_se_zgodi_prazen_razred------------------------------------------
-    seznam_moznosti = ["dodaj", "nazaj"]
+    seznam_moznosti = ["dodaj", "nazaj", "izhod"]
     drugi_izbran_element = ponudi_moznosti_za_normalen_seznam(seznam_iz_razreda)
     if izbran_element == "dodaj":
         if tip_razreda == "predmet":
@@ -214,29 +223,13 @@ def izbrisi_podrazred(razred, tip_podrazreda):
         elif ste_prepricani == "n":
             return razred
         
-#nazaj_____________________________________________________________________________________________________________
-def nazaj(razred):
-    pass
-
-
-
-
 #tekstovni vmesnik____________________________________________________________________________________________________
 zacetne_moznosti = [(vpis, "vpis"), (registracija, "registracija"), (izhod, "izhod")]
 
 def tekstovni_vmesnik():
     zacetni_pozdrav()
-    #vpisan = False
     ponudi_moznosti_za_seznam_zacetnih_moznosti(zacetne_moznosti)()
     izberi_iz_razreda(ucilnica, "predmet")
-    # poglavje = izberi_iz_razreda(predmet, "poglavje")
-    # alineja = izberi_iz_razreda(poglavje, "alineja")
-    # odg = alineja.odgovor
-    # print(odg)  
 
-
-
-                
 tekstovni_vmesnik()
-
     
