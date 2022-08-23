@@ -51,6 +51,10 @@ class Predmet:
     def izbrisi(self, poglavje):
         self.seznam.remove(poglavje)
         
+    def preimenuj(self, novo_ime):
+        self.ime = novo_ime
+        
+        
     def v_slovar(self):
         return{
             "ime": self.ime,
@@ -78,6 +82,9 @@ class Poglavje:
         
     def izbrisi(self, alineja):
         self.seznam.remove(alineja)
+        
+    def preimenuj(self, novo_ime):
+        self.ime = novo_ime
 
     def v_slovar(self):
         return{

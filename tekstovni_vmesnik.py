@@ -90,7 +90,11 @@ def izberi_iz_razreda(razred, tip_razreda, ucilnica=ucilnica):  #ucilnica=ucilni
     seznam_iz_razreda.append("dodaj")
     seznam_iz_razreda.append("izbriši")
     if tip_razreda != "predmet":
-        seznam_iz_razreda.append("nazaj")    
+        seznam_iz_razreda.append("nazaj")  
+    if tip_razreda == "poglavje":
+        seznam_iz_razreda.append("Preimenuj ime predmeta")
+    if tip_razreda == "alineja":
+        seznam_iz_razreda.append("Preimenuj ime poglavja")
     seznam_iz_razreda.append("izhod")
     
     izbran_element = ponudi_moznosti_za_normalen_seznam(seznam_iz_razreda)
@@ -152,7 +156,18 @@ def izberi_iz_razreda(razred, tip_razreda, ucilnica=ucilnica):  #ucilnica=ucilni
         if tip_razreda == "alineja":
             izbrisi_podrazred(razred, "alineja")  #ta funkcija ti bo izbrala alinejo, ki jo zelis izbrisat
             return izberi_iz_razreda(razred, "alineja")
-            
+        
+        #preimenuj_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+    elif izbran_element == "Preimenuj ime predmeta":
+        novo_ime = input("Novo ime predemta: ")
+        razred.preimenuj(novo_ime)
+        return izberi_iz_razreda(razred, "poglavje")
+    
+    elif izbran_element == "Preimenuj ime poglavja":
+        novo_ime = input("Novo ime poglavja: ")
+        razred.preimenuj(novo_ime)
+        return izberi_iz_razreda(razred, "alineja")
+    
         #nazaj-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
     elif izbran_element == "nazaj":
         if tip_razreda == "predmet":
