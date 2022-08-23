@@ -84,6 +84,7 @@ def izberi_iz_razreda(razred, tip_razreda):
         seznam_iz_razreda.append(element_seznama.ime)
     #dodaj = "dodaj" + tip_razreda
     seznam_iz_razreda.append("dodaj")
+    seznam_iz_razreda.append("izbriši")
     seznam_iz_razreda.append("nazaj")
     
     izbran_element = ponudi_moznosti_za_normalen_seznam(seznam_iz_razreda)
@@ -113,6 +114,7 @@ def izberi_iz_razreda(razred, tip_razreda):
                         break
                 for predmet in ucilnica.seznam:
                     for poglavje in predmet.seznam:
+                        #print(predmet.seznam)
                         if element_seznama in poglavje.seznam:                               
                             return izberi_iz_razreda(poglavje, "alineja")
             
@@ -131,7 +133,21 @@ def izberi_iz_razreda(razred, tip_razreda):
             poglavje = dodaj_alinejo(razred)
             print("Alineja dodana")
             return izberi_iz_razreda(poglavje, "alineja")
-        #nazaj-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+        #izbrisi_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+    elif izbran_element == "izbriši":
+        if tip_razreda == "predmet":
+            izbrisi_podrazred(razred, "predmet")
+            return izberi_iz_razreda(razred, "predmet")
+            
+        elif tip_razreda == "poglavje":
+            izbrisi_podrazred(razred,"poglavje")
+            return izberi_iz_razreda(razred, "poglavje")
+        
+        if tip_razreda == "alineja":
+            izbrisi_podrazred(razred, "alineja")  #ta funkcija ti bo izbrala alinejo, ki jo zelis izbrisat
+            return izberi_iz_razreda(razred, "alineja")
+            
+        # #nazaj-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
     elif izbran_element == "nazaj":
         if tip_razreda == "predmet":
             return exit()
@@ -141,7 +157,6 @@ def izberi_iz_razreda(razred, tip_razreda):
             for predmet in ucilnica.seznam:
                 if razred in predmet.seznam:                                #razred = poglavje
                     return izberi_iz_razreda(predmet, "poglavje")
-        
     #ce_se_zgodi_prazen_razred------------------------------------------
     seznam_moznosti = ["dodaj", "nazaj"]
     drugi_izbran_element = ponudi_moznosti_za_normalen_seznam(seznam_iz_razreda)
@@ -150,7 +165,7 @@ def izberi_iz_razreda(razred, tip_razreda):
             poglavje = dodaj_poglavje(izbran_element)
             izberi_iz_razreda(poglavje, "alineje")
                     
-#dodaj_____________________________________________________________________________________________________________________        
+#dodaj___________________________________________________________________________________________________________________       
 def dodaj_predmet():                             #ne rabis spremenljivke, ker obstaja samo ena ucilnica
     ime_predmeta = input("Ime predmeta: ")
     predmet = Predmet(ime_predmeta, [])
@@ -168,10 +183,37 @@ def dodaj_poglavje(predmet):
 def dodaj_alinejo(poglavje):
     vprasanje = input("Vprasanje: ")
     odgovor = input("Odgovor: ")
-    alineja = Alineja(vprasanje, odgovor, False)
+    vprasanje += "❌"
+    alineja = Alineja(vprasanje, odgovor)
     poglavje.dodaj(alineja)
     return poglavje
+#brisanje____________________________________________________________________________________________________________
+def izbrisi_podrazred(razred, tip_podrazreda):
+    seznam_imen_podrazredov = []
+    for podrazred in razred.seznam:
+        seznam_imen_podrazredov.append(podrazred.ime)
+        
+    print("Kaj želite izbrisati?")
+    ime_izbranega_podrazreda = ponudi_moznosti_za_normalen_seznam(seznam_imen_podrazredov)
+    
+    if ime_izbranega_podrazreda == None:
+        print("Tu ni ničesar za izbrisati")
+        cakanje_na_odziv = input()
+        return razred
 
+    if tip_podrazreda == "alineja":
+        tip_podrazreda = "alinejo"
+    
+    while True:
+        ste_prepricani = input(f"Ste prepričani, da želite izbrisati {tip_podrazreda} '{ime_izbranega_podrazreda}'? (y/n) ")
+        if ste_prepricani == "y":
+            for podrazred in razred.seznam:
+                if podrazred.ime == ime_izbranega_podrazreda:
+                    razred.izbrisi(podrazred)
+                    return razred
+        elif ste_prepricani == "n":
+            return razred
+        
 #nazaj_____________________________________________________________________________________________________________
 def nazaj(razred):
     pass

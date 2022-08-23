@@ -1,10 +1,16 @@
+from os import remove
+
+
 class Ucilnica:
     def __init__(self, ime, seznam): #seznam_predmetov
         self.ime = ime
         self.seznam = seznam
         
     def dodaj(self, predmet):
-        self.seznam.append(predmet)     
+        self.seznam.append(predmet)    
+        
+    def izbrisi(self, predmet):
+        self.seznam.remove(predmet) 
 
 class Predmet:
     def __init__(self, ime, seznam): #ime_predmeta #seznam_poglavij
@@ -13,6 +19,9 @@ class Predmet:
         
     def dodaj(self, poglavje):
         self.seznam.append(poglavje)
+        
+    def izbrisi(self, poglavje):
+        self.seznam.remove(poglavje)
 
 class Poglavje:
     def __init__(self, ime, seznam): #ime_poglavja #seznam_alinej
@@ -21,6 +30,9 @@ class Poglavje:
         
     def dodaj(self, alineja):
         self.seznam.append(alineja)
+        
+    def izbrisi(self, alineja):
+        self.seznam.remove(alineja)
 
 class Alineja:
     def __init__(self, ime, odgovor): #ime_alineje
