@@ -4,14 +4,14 @@ ucilnica = Ucilnica("Učilnica", [
     Predmet(
         "Matematika",[
             Poglavje("Odvodi", [
-                Alineja("vpr", "odgovor", False),
-                Alineja("vpr2", "odg2", False)]),
+                Alineja("vpr ✅", "odgovor"),
+                Alineja("vpr2 ✅", "odg2")]),
             Poglavje("Integrali", [
-                Alineja("vpr3", "odg3", False)])]),
+                Alineja("vpr3 ✅", "odg3")])]),
     Predmet(
         "Slovenščina", [
             Poglavje("Renesansa", [
-                Alineja("vpr4", "odg4", False)])]
+                Alineja("vpr4 ✅", "odg4")])]
         )]
 )
 
@@ -69,14 +69,17 @@ def ponudi_moznosti_za_normalen_seznam(seznam_moznosti):
 # izbire______________________________________________________________________________________________________             
 def izberi_iz_razreda(razred, tip_razreda):
     print(razred.ime)                                #pri razredu Ucilnica moras zato dodati atribut ime
-    if razred == None:
-        seznam_moznosti = ["dodaj", "Nazaj"]
-        izbran_element = ponudi_moznosti_za_normalen_seznam(seznam_iz_razreda)
-        if izbran_element == "dodaj":
-            if tip_razreda == "poglavje":
-                poglavje = dodaj_poglavje(razred)
+    # if razred == None:
+    #     seznam_moznosti = ["dodaj", "Nazaj"]
+    #     izbran_element = ponudi_moznosti_za_normalen_seznam(seznam_iz_razreda)
+    #     if izbran_element == "dodaj":
+    #         if tip_razreda == "poglavje":
+    #             poglavje = dodaj_poglavje(razred)
     #elementi_v_seznam-----------------------------------------------------------
     seznam_iz_razreda = []
+    
+
+        
     for element_seznama in razred.seznam:
         seznam_iz_razreda.append(element_seznama.ime)
     #dodaj = "dodaj" + tip_razreda
@@ -96,7 +99,18 @@ def izberi_iz_razreda(razred, tip_razreda):
             if tip_razreda == "alineja":
                 print(f"Vprašanje: {element_seznama.ime}")
                 print(f"Odgovor: {element_seznama.odgovor}")
-                cakanje_na_enter = input()
+                while True:
+                    znam = input("Znam (y/n): ")
+                    if znam == "n":
+                        element_seznama.spremeni_stanje_opravljenega(False)
+                        print("❌")
+                        break                                                   #da gre iz while true
+                    elif znam == "y":
+                        element_seznama.spremeni_stanje_opravljenega(True)
+                        print("✅")
+                        break                                                   #da gre iz while true
+                    elif znam == "":                                            #da ne rabis se enkrat enter, ce noces nicesar spremenit
+                        break
                 for predmet in ucilnica.seznam:
                     for poglavje in predmet.seznam:
                         if element_seznama in poglavje.seznam:                               

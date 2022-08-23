@@ -23,10 +23,15 @@ class Poglavje:
         self.seznam.append(alineja)
 
 class Alineja:
-    def __init__(self, ime, odgovor, opravljeno=False): #ime_alineje
+    def __init__(self, ime, odgovor): #ime_alineje
         self.ime = ime
         self.odgovor = odgovor
-        self.opravljeno = opravljeno
+    
+    def spremeni_stanje_opravljenega(self, opravljeno):
+        if opravljeno == False:
+            self.ime = self.ime.replace("✅", "❌")
+        if opravljeno == True:
+            self.ime = self.ime.replace("❌", "✅")
         
     def opravi(self):
         self.opravljeno = True
