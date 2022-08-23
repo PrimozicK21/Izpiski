@@ -1,5 +1,5 @@
 from os import remove
-
+import json
 
 class Ucilnica:
     def __init__(self, ime, seznam): #seznam_predmetov
@@ -10,8 +10,36 @@ class Ucilnica:
         self.seznam.append(predmet)    
         
     def izbrisi(self, predmet):
-        self.seznam.remove(predmet) 
+        self.seznam.remove(predmet)
+        
+    def v_slovar(self):     
+        return{
+            "ime": self.ime,
+            "seznam": [predmet.v_slovar() for predmet in self.seznam]
+        }
+    
+    @staticmethod                           #to je funkcija
+    def iz_slovarja(slovar):
+        ucilnica = Ucilnica(
+            slovar["ime"],
+            [
+                Predmet.iz_slovarja(slovar_predmetov)
+                for slovar_predmetov in slovar["seznam"]
+            ]
+        )
+        return ucilnica
 
+    def shrani_v_datoteko(self, ime_datoteke):
+        with open(ime_datoteke, "w") as dat:
+            slovar = self.v_slovar()
+            json.dump(slovar, dat, indent=4, ensure_ascii=False)  #da je model lepo oblikovan (zavihki, šumniki)
+            
+    @staticmethod
+    def preberi_iz_datoteke(ime_datoteke):
+        with open(ime_datoteke) as dat:
+            slovar = json.load(dat)
+            return Ucilnica.iz_slovarja(slovar)
+            
 class Predmet:
     def __init__(self, ime, seznam): #ime_predmeta #seznam_poglavij
         self.ime = ime
@@ -22,6 +50,23 @@ class Predmet:
         
     def izbrisi(self, poglavje):
         self.seznam.remove(poglavje)
+        
+    def v_slovar(self):
+        return{
+            "ime": self.ime,
+            "seznam": [poglavje.v_slovar() for poglavje in self.seznam]
+        }    
+
+    @staticmethod
+    def iz_slovarja(slovar):
+        predmeti = Predmet(
+            slovar["ime"],
+            [
+                Poglavje.iz_slovarja(slovar_poglavij)
+                for slovar_poglavij in slovar["seznam"]
+            ]
+            )
+        return predmeti
 
 class Poglavje:
     def __init__(self, ime, seznam): #ime_poglavja #seznam_alinej
@@ -34,8 +79,25 @@ class Poglavje:
     def izbrisi(self, alineja):
         self.seznam.remove(alineja)
 
+    def v_slovar(self):
+        return{
+            "ime": self.ime,
+            "seznam": [alineja.v_slovar() for alineja in self.seznam]
+        }
+
+    @staticmethod
+    def iz_slovarja(slovar):
+        poglavja = Poglavje(
+            slovar["ime"],
+            [
+                Alineja.iz_slovarja(slovar_alinej)
+                for slovar_alinej in slovar["seznam"]
+            ]
+        )
+        return poglavja
+    
 class Alineja:
-    def __init__(self, ime, odgovor): #ime_alineje
+    def __init__(self, ime, odgovor): #ime_alineje = vprašanje
         self.ime = ime
         self.odgovor = odgovor
     
@@ -48,5 +110,16 @@ class Alineja:
     def opravi(self):
         self.opravljeno = True
         
+    def v_slovar(self):
+        return{
+            "ime": self.ime.replace("❌", "_krizec_").replace("✅", "_kljukica_"),
+            "odgovor": self.odgovor
+        }  
         
-
+    @staticmethod
+    def iz_slovarja(slovar):
+        alineje = Alineja(
+            slovar["ime"].replace("_krizec_", "❌").replace("_kljukica_", "✅"),
+            slovar["odgovor"]
+        )
+        return alineje
