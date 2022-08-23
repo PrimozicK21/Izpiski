@@ -73,43 +73,59 @@ def izberi_iz_razreda(razred, tip_razreda):
         izbran_element = ponudi_moznosti_za_normalen_seznam(seznam_iz_razreda)
         if izbran_element == "dodaj":
             if tip_razreda == "poglavje":
-                poglavje = dodaj_poglavje(predmet)
-
+                poglavje = dodaj_poglavje(razred)
+    #elementi_v_seznam-----------------------------------------------------------
     seznam_iz_razreda = []
     for element_seznama in razred.seznam:
         seznam_iz_razreda.append(element_seznama.ime)
     #dodaj = "dodaj" + tip_razreda
     seznam_iz_razreda.append("dodaj")
-    seznam_iz_razreda.append("izhod")
+    seznam_iz_razreda.append("nazaj")
     
     izbran_element = ponudi_moznosti_za_normalen_seznam(seznam_iz_razreda)
     
     
-    
+    #nadaljuj_po_okenckih-------------------------------------------------
     for element_seznama in razred.seznam:
         if element_seznama.ime == izbran_element:
-            return element_seznama 
-        # izberi_iz_razreda(element_seznama)
-        
+            if tip_razreda == "predmet":
+                return izberi_iz_razreda(element_seznama, "poglavje")
+            if tip_razreda == "poglavje":
+                return izberi_iz_razreda(element_seznama, "alineja")
+            if tip_razreda == "alineja":
+                print(element_seznama.odgovor)
+                return element_seznama.odgovor
+    
+    #posebne_izbire-----------------------------------------------------   
     if izbran_element == "dodaj":
         if tip_razreda == "predmet":
-            return dodaj_predmet()
+            predmet = dodaj_predmet()
+            return izberi_iz_razreda(predmet, "poglavje")
         if tip_razreda == "poglavje":
-            return dodaj_poglavje(razred)
+            poglavje = dodaj_poglavje(razred)
+            return izberi_iz_razreda(poglavje, "alineja")
         if tip_razreda == "alineja":
-            return dodaj_alinejo(razred)
-        
+            print("Alineja dodana")
+            return izberi_iz_razreda(element_seznama, "alineja")
+    #nazaj--------------------------------------------------------------    
     elif izbran_element == "nazaj":
-        pass
-    
-    seznam_moznosti = ["dodaj", "Nazaj"]
+        if tip_razreda == "predmet":
+            return exit()
+        elif tip_razreda == "poglavje":
+            return izberi_iz_razreda(ucilnica, "predmet")
+        elif tip_razreda == "alineja":
+            for predmet in ucilnica.seznam:
+                if razred in predmet.seznam:                                #razred = poglavje
+                    return izberi_iz_razreda(predmet, "poglavje")
+        
+    #ce_se_zgodi_prazen_razred------------------------------------------
+    seznam_moznosti = ["dodaj", "nazaj"]
     drugi_izbran_element = ponudi_moznosti_za_normalen_seznam(seznam_iz_razreda)
     if izbran_element == "dodaj":
         if tip_razreda == "predmet":
             poglavje = dodaj_poglavje(izbran_element)
             izberi_iz_razreda(poglavje, "alineje")
-        
-        
+                    
 #dodaj_____________________________________________________________________________________________________________________        
 def dodaj_predmet():
     ime_predmeta = input("Ime predmeta: ")
@@ -132,6 +148,9 @@ def dodaj_alinejo(poglavje):
     poglavje.dodaj(alineja)
     return alineja
 
+#nazaj_____________________________________________________________________________________________________________
+def nazaj(razred):
+    pass
 
 
 
@@ -143,11 +162,11 @@ def tekstovni_vmesnik():
     zacetni_pozdrav()
     #vpisan = False
     ponudi_moznosti_za_seznam_zacetnih_moznosti(zacetne_moznosti)()
-    predmet = izberi_iz_razreda(ucilnica, "predmet")
-    poglavje = izberi_iz_razreda(predmet, "poglavje")
-    alineja = izberi_iz_razreda(poglavje, "alineja")
-    odg = alineja.odgovor
-    print(odg)  
+    izberi_iz_razreda(ucilnica, "predmet")
+    # poglavje = izberi_iz_razreda(predmet, "poglavje")
+    # alineja = izberi_iz_razreda(poglavje, "alineja")
+    # odg = alineja.odgovor
+    # print(odg)  
 
 
 
