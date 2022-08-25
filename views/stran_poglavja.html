@@ -1,0 +1,25 @@
+<h1>{{poglavje.ime}}</h1>
+
+<ul>
+    %id_predmeta = ucilnica.seznam.index(predmet)
+    %id_poglavja = predmet.seznam.index(poglavje)
+    %for id_alineje, alineja in enumerate(poglavje.seznam):
+        <li>
+            <a href='/{{id_predmeta}}/{{id_poglavja}}/{{id_alineje}}/'>{{alineja.ime}}</a>
+        </li>
+    %end
+</ul>
+
+Dodaj vprašanje:
+<form action="/{{id_predmeta}}/{{id_poglavja}}/dodaj_alinejo/", method="POST">
+    <input type="text", name="ime", placeholder="Vprašanje">
+    <input type="text", name="odgovor", placeholder="Odgovor">
+    <button>DODAJ</button>
+</form>
+
+<a href="/{{id_predmeta}}/"><button type="button">NAZAJ</button></a>
+
+<form action="/{{id_predmeta}}/{{id_poglavja}}/preimenuj/", method="POST", accept-charset="utf-8">
+    <input type="text", name="novo_ime", placeholder="Novo ime">
+    <button>PREIMENUJ</button>
+</form>

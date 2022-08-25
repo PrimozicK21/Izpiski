@@ -1,0 +1,27 @@
+<h1>{{poglavje.ime}}</h1>
+
+<ul>
+    %id_predmeta = ucilnica.seznam.index(predmet)
+    %id_poglavja = predmet.seznam.index(poglavje)
+    %for id_alineje, alineja in enumerate(poglavje.seznam):
+        <li>
+            <a href="/{{id_predmeta}}/{{id_poglavja}}/{{id_alineje}}/">{{alineja.ime}}</a>
+            %if id_alineje == poglavje.seznam.index(prikazana_alineja):
+                ➙ {{alineja.odgovor}}
+            %end
+        </li>
+
+        %if id_alineje == poglavje.seznam.index(prikazana_alineja ) :
+            <a href="/{{id_predmeta}}/{{id_poglavja}}/{{id_alineje}}/znam/">
+                <button type="button">znam</button>
+            </a>
+            
+            <a href="/{{id_predmeta}}/{{id_poglavja}}/{{id_alineje}}/ne_znam/">
+                <button type="button">ne znam</button>
+            </a>
+        %end
+    %end
+</ul>
+
+<a href="/{{id_predmeta}}/{{id_poglavja}}/"><button type="button">NAZAJ</button>nazaj</a>
+<a href="/{{id_predmeta}}/{{id_poglavja}}/preimenuj/"><button type="button">PREIMENUJ</button>nazaj</a>

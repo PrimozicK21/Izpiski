@@ -1,0 +1,16 @@
+<h1>Dobrodošel v učilnici</h1>
+
+Tu lahko dodaš predmete:
+<ul>
+% for id_predmeta, predmet in enumerate(ucilnica.seznam):
+    <li>
+        <a href="/{{id_predmeta}}/">{{predmet.ime}}</a>
+    </li>
+%end
+</ul>
+
+Dodaj predmet:
+<form action="/dodaj_predmet/", method="POST", accept-charset="utf-8">
+    <input type="text", name="ime", placeholder="Ime predmeta">
+    <button>DODAJ</button>
+</form>
