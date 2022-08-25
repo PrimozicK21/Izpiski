@@ -1,5 +1,6 @@
 from os import remove
 import json
+import bottle
 
 class Ucilnica:
     def __init__(self, ime, seznam): #seznam_predmetov
@@ -11,6 +12,9 @@ class Ucilnica:
         
     def izbrisi(self, predmet):
         self.seznam.remove(predmet)
+    
+    def preimenuj(self, novo_ime):
+        self.ime = novo_ime
         
     def v_slovar(self):     
         return{
@@ -30,13 +34,13 @@ class Ucilnica:
         return ucilnica
 
     def shrani_v_datoteko(self, ime_datoteke):
-        with open(ime_datoteke, "w") as dat:
+        with open(ime_datoteke, "w", encoding="utf-8") as dat:
             slovar = self.v_slovar()
             json.dump(slovar, dat, indent=4, ensure_ascii=False)  #da je model lepo oblikovan (zavihki, šumniki)
             
     @staticmethod
     def preberi_iz_datoteke(ime_datoteke):
-        with open(ime_datoteke) as dat:
+        with open(ime_datoteke, encoding="utf-8") as dat:
             slovar = json.load(dat)
             return Ucilnica.iz_slovarja(slovar)
             
