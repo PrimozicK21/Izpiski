@@ -1,3 +1,7 @@
+<head>
+    <title>Učilnica</title>
+</head>
+
 <h1>{{predmet.ime}}</h1>
 
 <ul>
@@ -15,5 +19,15 @@ Dodaj poglavje:
     <button>DODAJ</button>
 </form>
 
+<form action="/{{id_predmeta}}/preimenuj/", method="POST", accept-charset="utf-8">
+    <input type="text", name="novo_ime", placeholder="Preimenuj ime predmeta">
+    <button>SHRANI</button>
+</form>
+
+<a href="/{{id_predmeta}}/izbrisi_predmet/">
+    <button type="button">IZBRŠI predmet '{{predmet.ime}}'</button>
+</a>
+
 
 <a href="/"><button type="button">NAZAJ</button></a>
+

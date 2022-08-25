@@ -48,9 +48,26 @@ def ne_znam(id_predmeta, id_poglavja, id_alineje):
     bottle.redirect(path)
     
 @bottle.get("/<id_predmeta:int>/<id_poglavja:int>/<id_alineje:int>/izbrisi_alinejo/")
-def izbrisi(id_predmeta, id_poglavja, id_alineje):
-    pass
-                    
+def izbrisi_alinejo(id_predmeta, id_poglavja, id_alineje):
+    ucilnica.seznam[id_predmeta].seznam[id_poglavja].seznam.remove(ucilnica.seznam[id_predmeta].seznam[id_poglavja].seznam[id_alineje])
+    ucilnica.shrani_v_datoteko(IME_DATOTEKE)
+    path= "/"+str(id_predmeta)+"/"+str(id_poglavja)+"/"
+    bottle.redirect(path)
+    
+@bottle.get("/<id_predmeta:int>/<id_poglavja:int>/izbrisi_poglavje/")
+def izbrisi_alinejo(id_predmeta, id_poglavja):
+    ucilnica.seznam[id_predmeta].seznam.remove(ucilnica.seznam[id_predmeta].seznam[id_poglavja])
+    ucilnica.shrani_v_datoteko(IME_DATOTEKE)
+    path= "/"+str(id_predmeta)+"/"
+    bottle.redirect(path)
+    
+@bottle.get("/<id_predmeta:int>/izbrisi_predmet/")
+def izbrisi_predmet(id_predmeta):
+    ucilnica.seznam.remove(ucilnica.seznam[id_predmeta])
+    ucilnica.shrani_v_datoteko(IME_DATOTEKE)
+    path= "/"
+    bottle.redirect(path)
+                        
 @bottle.post("/<id_predmeta:int>/<id_poglavja:int>/dodaj_alinejo/")
 def dodaj_alinejo(id_predmeta, id_poglavja):
     ime = bottle.request.forms["ime"]

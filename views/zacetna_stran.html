@@ -1,3 +1,8 @@
+<head>
+    <title>Učilnica</title>
+</head>
+
+
 <h1>Dobrodošel v učilnici</h1>
 
 Tu lahko dodaš predmete:
@@ -13,4 +18,9 @@ Dodaj predmet:
 <form action="/dodaj_predmet/", method="POST", accept-charset="utf-8">
     <input type="text", name="ime", placeholder="Ime predmeta">
     <button>DODAJ</button>
+</form>
+
+<form action="/preimenuj/", method="POST", accept-charset="utf-8">
+    <input type="text", name="novo_ime", placeholder="Preimenuj ime učilnice">
+    <button>SHRANI</button>
 </form>
