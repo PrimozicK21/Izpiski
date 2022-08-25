@@ -114,11 +114,11 @@ def izberi_iz_razreda(razred, tip_razreda, ucilnica=ucilnica):  #ucilnica=ucilni
                     znam = input("Znam (y/n): ")
                     if znam == "n":
                         element_seznama.spremeni_stanje_opravljenega(False)
-                        print("❌")
+                        print(" ❌")
                         break                                                   #da gre iz while true
                     elif znam == "y":
                         element_seznama.spremeni_stanje_opravljenega(True)
-                        print("✅")
+                        print(" ✅")
                         break                                                   #da gre iz while true
                     elif znam == "":                                            #da ne rabis se enkrat enter, ce noces nicesar spremenit
                         break
