@@ -1,38 +1,65 @@
+<!DOCTYPE html>
+<html>
+%rebase('base.html', title="Predmet")
+
 <head>
     <title>Učilnica</title>
 </head>
 
-<h1>{{poglavje.ime}}</h1>
+<body>
+    <div class="odzadje">
+        <div>
+            <h1>{{poglavje.ime}}</h1>
+            <div class="alineje">
+                <ul>
+                    %id_predmeta = ucilnica.seznam.index(predmet)
+                    %id_poglavja = predmet.seznam.index(poglavje)
+                    %for id_alineje, alineja in enumerate(poglavje.seznam):
+                        <li>
+                            <a href="/{{id_predmeta}}/{{id_poglavja}}/{{id_alineje}}/">{{alineja.ime}}</a>
+                            %if id_alineje == poglavje.seznam.index(prikazana_alineja):
+                            ➙ {{alineja.odgovor}}
+                            %end
+                        </li>
+                        <div class="znam">
+                        %if id_alineje == poglavje.seznam.index(prikazana_alineja ) :
+                            <a href="/{{id_predmeta}}/{{id_poglavja}}/{{id_alineje}}/znam/">
+                                <button type="button">znam</button>
+                            </a>
+                            
+                            <a href="/{{id_predmeta}}/{{id_poglavja}}/{{id_alineje}}/ne_znam/">
+                                <button type="button">ne znam</button>
+                            </a>
 
-<ul>
-    %id_predmeta = ucilnica.seznam.index(predmet)
-    %id_poglavja = predmet.seznam.index(poglavje)
-    %for id_alineje, alineja in enumerate(poglavje.seznam):
-        <li>
-            <a href="/{{id_predmeta}}/{{id_poglavja}}/{{id_alineje}}/">{{alineja.ime}}</a>
-            %if id_alineje == poglavje.seznam.index(prikazana_alineja):
-                ➙ {{alineja.odgovor}}
-            %end
-        </li>
+                            <a href="/{{id_predmeta}}/{{id_poglavja}}/{{id_alineje}}/izbrisi_alinejo/">
+                                <button type="button">Izbriši to alinejo</button>
+                            </a>
+                        %end
+                        </div>
+                    %end
+                </ul>
+            </div>
+            <!-- <div class="gumb-sredina">
+                <a href="/{{id_predmeta}}/{{id_poglavja}}/preimenuj/"><button type="button">PREIMENUJ</button>nazaj</a>
+            </div> -->
+            <div class="gumb-sredina-z">
+                <form action="/{{id_predmeta}}/{{id_poglavja}}/preimenuj/", method="POST", accept-charset="utf-8">
+                    <input type="text", name="novo_ime", placeholder="Spremeni ime poglavja">
+                    <button >SHRANI</button>
+                </form>
+            </div>
+            <div class="gumb-sredina-s">
+                <a href="/{{id_predmeta}}/{{id_poglavja}}/izbrisi_poglavje/">
+                    <button type="button">IZBRŠI poglavje '{{poglavje.ime.upper()}}'</button>
+                </a>
+            </div>
 
-        %if id_alineje == poglavje.seznam.index(prikazana_alineja ) :
-            <a href="/{{id_predmeta}}/{{id_poglavja}}/{{id_alineje}}/znam/">
-                <button type="button">znam</button>
-            </a>
-            
-            <a href="/{{id_predmeta}}/{{id_poglavja}}/{{id_alineje}}/ne_znam/">
-                <button type="button">ne znam</button>
-            </a>
+            <div class="gumb-levo">
+                <a href="/{{id_predmeta}}/{{id_poglavja}}/"><button type="button">NAZAJ</button></a>
+            </div>        
+        </div>
+    </div>
+</body>
 
-            <a href="/{{id_predmeta}}/{{id_poglavja}}/{{id_alineje}}/izbrisi_alinejo/">
-                <button type="button">Izbriši to alinejo</button>
-            </a>
-        %end
-    %end
-</ul>
-
-<a href="/{{id_predmeta}}/{{id_poglavja}}/preimenuj/"><button type="button">PREIMENUJ</button>nazaj</a>
-
-
-<a href="/{{id_predmeta}}/{{id_poglavja}}/"><button type="button">NAZAJ</button>nazaj</a>
-
+%end
+</html>
