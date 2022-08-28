@@ -1,0 +1,229 @@
+html,
+body {
+    height: 100%;
+}
+
+body {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    color: #040d0a;
+}
+
+.levi_rob {
+    margin-left: 2em;
+}
+
+h1 {color: rgb(120, 218, 233);
+    font-family: "FreeMono";
+    font-size: 4em;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 5px black;
+    margin-top: 50px;
+}
+
+.modra-senca h2{
+    text-shadow: 2px 2px 2px rgba(192, 233, 247, 0.874);
+}
+
+ul {
+    list-style-type: None;
+    font-size: 2em;
+    /* padding: 3px; */
+}
+
+.alineja-odgovor {
+	text-align: center;
+	}
+
+.alineje {
+	text-align: center;
+	}
+.alineje ul { 
+	display: inline-block; 
+	text-align: left; 
+    max-width: 100%;
+	}
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    color: rgb(10, 11, 10);
+}
+ 
+a:hover {
+    color: rgb(120, 218, 233)
+}
+
+
+.odzadje{
+    background-image: url("https://burst.shopifycdn.com/photos/wrtiting-tools.jpg?width=1200&format=pjpg&exif=1&iptc=1");
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    position: center;
+    text-align: center;
+}
+  
+
+
+.odzadje-predmet {
+    position: center; 
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.odzadje-predmet::before {    
+      content: "";
+      background-image: url("https://burst.shopifycdn.com/photos/wrtiting-tools.jpg?width=1200&format=pjpg&exif=1&iptc=1");
+      background-size: cover;
+      position: center;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      opacity: 0.75;
+}
+
+.vsebina-predmeta {
+  position: center;
+  font-size: 1em;
+  line-height: 0.9;
+  text-align: center;
+}
+
+
+.odzadje-poglavja {
+    position: relative; 
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.odzadje-poglavja::before {    
+      content: "";
+      background-image: url("slika.png");
+      background-size: cover;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      opacity: 0.75;
+}
+
+.vsebina-poglavja h1 {
+  position: absolute;
+  top:6%;
+  left: 41%;
+  margin-top: 50px;
+  font-family: "FreeMono";
+  font-size: 4em;
+  line-height: 0.1;
+  text-align: center;
+  color: rgb(120, 218, 233);
+  text-shadow: 2px 2px 5px black;
+}
+
+
+.alineje {
+    position: absolute;
+    top:15%;
+    left: 20%;
+    font-size: 0.8em;
+    line-height: 1.5;
+    text-align: left;
+  }
+
+.alineje{
+        max-height: fit-content;
+        width: 800px;
+        background-color: rgba(236, 242, 248, 0.814);
+        border-top: 2px rgb(219, 219, 219);
+        padding: 3px;
+        margin: 20px;
+}
+
+
+/* .orodna-vrstica {
+    background-color: #4c89af; /* Green */
+    /* border: 1px solid rgb(27, 87, 122);
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    float: left;
+  }
+  
+.orodna-vrstica .button:not(:last-child) {
+    border-right: none; /* Prevent double borders */
+
+  
+/* .orodna-vrstica .button:hover {
+    background-color: #3e8e41;
+  } */
+
+
+.znam{
+    font-size: small;
+}
+
+/* .orodna-vrstica {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+ } */
+
+ .gumb-sredina-z form{
+    position: fixed;
+    bottom: 10%;
+    width: 100%;
+    line-height: 10px;
+    color: white;
+    text-align: center;
+ }
+
+ .gumb-sredina-s button{
+    position: fixed;
+    bottom: 4%;
+    width: 18%;
+    height: 4%;
+    color: rgb(0, 6, 9);
+    text-align: center;
+    left: 41%;
+ }
+
+
+ .gumb-levo button{
+    border-radius: 10%;
+    font-size: 35px;
+    position: fixed;
+    left: 3%;
+    top: 5%;
+    width: 7%;
+    color: rgba(9, 16, 19, 0.6);
+    text-align: left;
+    background-color: rgba(209, 226, 241, 0.814);
+ }
+
+.srednja-velikost{
+    font-size: medium;
+}
+
+.odebeljeno{
+    text-shadow: 2px 2px 4px lightblue;
+    white-space: nowrap;
+}
