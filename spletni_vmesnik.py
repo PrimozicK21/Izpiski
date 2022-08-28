@@ -13,13 +13,14 @@ except FileNotFoundError:
 def vstavi_sumnike(ime):
      return ime.replace("Ä\x8d","č").replace("Å¡","š").replace("Å¾","ž").replace("Ä\x8c","Č").replace("Å\xa0","Š").replace("Å½","Ž")
 
+
 @bottle.get("/")
 def zacetna_stran():
     return bottle.template("zacetna_stran.html", ucilnica=ucilnica) #spremenljivko poveze s pojmom ucilnica
 
-@bottle.get("ime>/")
-def pozdravi(ime):
-    return f"<h1>Živjo, {ime}!</h1>"
+# @bottle.get("/<ime>/")
+# def pozdravi(ime):
+#     return f"<h1>Živjo, {ime}!</h1>
 
 @bottle.get("/<id_predmeta:int>/")
 def stran_predmeta(id_predmeta):
@@ -75,6 +76,7 @@ def dodaj_alinejo(id_predmeta, id_poglavja):
     if ime !="" or odgovor !="":
         ime += "❌"
         ime = vstavi_sumnike(ime)
+        odgovor = vstavi_sumnike(odgovor)
         ucilnica.seznam[id_predmeta].seznam[id_poglavja].dodaj(Alineja(ime, odgovor))
         ucilnica.shrani_v_datoteko(IME_DATOTEKE)
     path= "/"+str(id_predmeta)+"/"+str(id_poglavja)+"/"
@@ -133,8 +135,15 @@ def spremeni_ime_ucilnice():
 #             if ime_predmeta == predmet.ime:
 #                 for poglavje in predmet.seznam:
 #                     if ime_poglavja == poglavje.ime:
-#                         for alineja in poglavje.seznam:
+#                          for alineja in poglavje.seznam:
 #                             alineja.pokazi_odgovor()
 #                             return bottle.template("stran_poglavja.html", poglavje=poglavje, predmet = predmet)
+@bottle.get("/style.css")
+def slog():
+    return bottle.static_file("style.css", root="views")
+
+@bottle.get("/normalize.css")
+def slog():
+    return bottle.static_file("normalize.css", root="views")
 
 bottle.run(debug=True, reloader=True) #če daš na javno spletno stran, potem debug izklopiš
