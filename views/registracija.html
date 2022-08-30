@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+%rebase('base.html', title="Prijava")
+
+<div class="prijava">
+    <div class="okvir">
+        <form class="obrazec" method="POST">
+            <input type="text" name="uporabnisko_ime" placeholder="Uporabniško ime" class="obrazec-vstavi">
+            <input type="password" name="geslo1" placeholder="Geslo" class="obrazec-vstavi">
+            <input type="password" name="geslo2" placeholder="Ponovno geslo" class="obrazec-vstavi">
+            <input type="submit">
+        </form>
+        <a href="/prijava/"><button type="button" class="gumb">Registracija</button></a>
+    </div>
+</div>
+%end
+
+</html>
