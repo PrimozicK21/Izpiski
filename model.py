@@ -1,7 +1,10 @@
+from dataclasses import dataclass
 from os import remove
 import json
-import bottle
 
+
+# Ucilnica_______________________________________________________________
+@dataclass
 class Ucilnica:
     def __init__(self, ime, seznam): #seznam_predmetov
         self.ime = ime
@@ -21,7 +24,7 @@ class Ucilnica:
             "ime": self.ime,
             "seznam": [predmet.v_slovar() for predmet in self.seznam]
         }
-    
+        
     @staticmethod                           #to je funkcija
     def iz_slovarja(slovar):
         ucilnica = Ucilnica(
@@ -33,6 +36,7 @@ class Ucilnica:
         )
         return ucilnica
 
+    
     def shrani_v_datoteko(self, ime_datoteke):
         with open(ime_datoteke, "w", encoding="utf-8") as dat:
             slovar = self.v_slovar()
@@ -43,7 +47,8 @@ class Ucilnica:
         with open(ime_datoteke, encoding="utf-8") as dat:
             slovar = json.load(dat)
             return Ucilnica.iz_slovarja(slovar)
-            
+        
+# Predmet_______________________________________________________________
 class Predmet:
     def __init__(self, ime, seznam): #ime_predmeta #seznam_poglavij
         self.ime = ime
@@ -75,7 +80,7 @@ class Predmet:
             ]
             )
         return predmeti
-
+# Poglavje_______________________________________________________________
 class Poglavje:
     def __init__(self, ime, seznam): #ime_poglavja #seznam_alinej
         self.ime = ime
@@ -106,7 +111,7 @@ class Poglavje:
             ]
         )
         return poglavja
-    
+# Alineja_______________________________________________________________    
 class Alineja:
     def __init__(self, ime, odgovor): #ime_alineje = vprašanje
         self.ime = ime
@@ -121,6 +126,7 @@ class Alineja:
     def opravi(self):
         self.opravljeno = True
         
+        
     def v_slovar(self):
         return{
             "ime": self.ime.replace("❌", "_krizec_").replace("✅", "_kljukica_"),
@@ -134,3 +140,4 @@ class Alineja:
             slovar["odgovor"]
         )
         return alineje
+

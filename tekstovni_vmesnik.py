@@ -11,20 +11,6 @@ except FileNotFoundError:
         ucilnica.shrani_v_datoteko(IME_DATOTEKE)
         ucilnica = Ucilnica.preberi_iz_datoteke(IME_DATOTEKE)
 
-# ucilnica = Ucilnica("Učilnica", [
-#     Predmet(
-#         "Matematika",[
-#             Poglavje("Odvodi", [
-#                 Alineja("vpr ✅", "odgovor"),
-#                 Alineja("vpr2 ✅", "odg2")]),
-#             Poglavje("Integrali", [
-#                 Alineja("vpr3 ✅", "odg3")])]),
-#     Predmet(
-#         "Slovenščina", [
-#             Poglavje("Renesansa", [
-#                 Alineja("vpr4 ✅", "odg4")])]
-#         )]
-# )
 
 #zacetne funkcije_______________________________________________________________________________________________________
 def vpis():
@@ -80,13 +66,12 @@ def ponudi_moznosti_za_normalen_seznam(seznam_moznosti):
 #tip_razreda = ["predmet", "poglavje", "alineja"]
 # izbire______________________________________________________________________________________________________             
 def izberi_iz_razreda(razred, tip_razreda, ucilnica=ucilnica):  #ucilnica=ucilnica, da ti spremenljivko poveze s pojmom ucilnica, ki je definiran na zacetku
-    print(razred.ime.upper())                                #pri razredu Ucilnica moras zato dodati atribut ime
+    print(razred.ime.upper())                          
     
     #pojmi_v_seznam-----------------------------------------------------------
     seznam_iz_razreda = []
     for element_seznama in razred.seznam:
         seznam_iz_razreda.append(element_seznama.ime)
-    #dodaj = "dodaj" + tip_razreda
     seznam_iz_razreda.append("dodaj")
     seznam_iz_razreda.append("izbriši")
     if tip_razreda != "predmet":
@@ -100,7 +85,7 @@ def izberi_iz_razreda(razred, tip_razreda, ucilnica=ucilnica):  #ucilnica=ucilni
     izbran_element = ponudi_moznosti_za_normalen_seznam(seznam_iz_razreda)
     
     
-    #nadaljuj_po_okenckih-------------------------------------------------
+    #nadaljuj_po_kategorijah-------------------------------------------------
     for element_seznama in razred.seznam:
         if element_seznama.ime == izbran_element:
             if tip_razreda == "predmet":
