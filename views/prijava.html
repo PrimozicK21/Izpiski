@@ -1,16 +1,34 @@
 <!DOCTYPE html>
 
 <html>
-
 %rebase('base.html', title="Prijava")
-<div class="obrazec">
-    <form method="POST">
-        <input type="text" name="uporabnisko_ime">
-        <input type="password" name="geslo">
-        <input type="submit">
-    </form>
-    <a href="/registracija/"><button type="button">Registracija</button></a>
-</div>
-%end
 
+<h3>
+    Personalizirani izpiski
+</h3>
+
+<form method="post">
+
+<div class="container">
+    <div class="obrazec">
+        <h2>PRIJAVA</h2> 
+        <label for="uporabnisko_ime"><b>Uporabniško ime:</b></label>
+        <input type="text" name="uporabnisko_ime" required> <br>
+
+        <label for="geslo"><b>Geslo:</b></label>
+        <input type="password" name="geslo" required> <br>
+        
+        <button type="submit">Prijavi me</button>
+    </div>
+
+
+
+
+    <div class="gumb_za_p_ali_r">
+        <a href="/registracija/"> <button  type="button"> Registracija </button> </a>
+    </div>
+</div>
+</form>
+
+%end
 </html>

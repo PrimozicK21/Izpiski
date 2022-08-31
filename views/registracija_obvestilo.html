@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html>
+%rebase('base.html', title="Prijava")
+<div class="obvestila">
+    %if obvestilo == "Gesli se ne ujemata":
+        <p>
+            ⚠️ <u>Gesli se ne ujemata</u> ⚠️
+        </p>
+    %end
+
+    %if obvestilo == "To ime je že uporabljeno. Poizkusite znova!":
+        <p>
+            ⚠️ <u>To ime je že uporabljeno. Poizkusite drugo!</u> ⚠️
+        </p>
+    %end
+</div>
+
+<form method="post">
+
+<div class="container">
+    <div class="obrazec">
+        <h2>REGISTRACIJA</h2> 
+        <label for="uporabnisko_ime"><b>Uporabniško ime:</b></label>
+        <input type="text" name="uporabnisko_ime" required> <br>
+
+        <label for="geslo"><b>Geslo:</b></label>
+        <input type="password" name="geslo1" required> <br>
+        <label for="geslo"><b>Potrdite geslo:</b></label>
+        <input type="password" name="geslo2" required> <br>
+        
+        <button type="submit">Registriraj me</button>
+    </div>
+
+
+
+
+    <div class="gumb_za_p_ali_r">
+        <a href="/prijava/"> <button  type="button"> Prijava </button> </a>
+    </div>
+</div>
+</form>
+
+%end
+</html>
