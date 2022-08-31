@@ -18,14 +18,14 @@
                     %id_poglavja = predmet.seznam.index(poglavje)
                     %for id_alineje, alineja in enumerate(poglavje.seznam):
                     <li>
-                        <a href='/{{id_predmeta}}/{{id_poglavja}}/{{id_alineje}}/'>{{alineja.ime}}</a>
+                        <a href="/{{id_predmeta}}/{{id_poglavja}}/{{id_alineje}}/">{{alineja.ime}}</a>
                     </li>
                     %end
                     <div class="srednja-velikost">
                         <li>
-                            <form action="/{{id_predmeta}}/{{id_poglavja}}/dodaj_alinejo/", method="POST">
-                                <input type="text", name="ime", placeholder="Vprašanje">
-                                <input type="text", name="odgovor", placeholder="Odgovor">
+                            <form action="/{{id_predmeta}}/{{id_poglavja}}/dodaj_alinejo/" method="POST">
+                                <input type="text" name="ime" placeholder="Vprašanje">
+                                <input type="text" name="odgovor" placeholder="Odgovor">
                                 <button>DODAJ</button>
                             </form>
                         </li>
@@ -34,8 +34,8 @@
             </div>
 
             <div class="gumb-sredina-z">
-                <form action="/{{id_predmeta}}/{{id_poglavja}}/preimenuj/", method="POST", accept-charset="utf-8">
-                    <input type="text", name="novo_ime", placeholder="Spremeni ime poglavja">
+                <form action="/{{id_predmeta}}/{{id_poglavja}}/preimenuj/" method="POST" accept-charset="utf-8">
+                    <input type="text" name="novo_ime" placeholder="Spremeni ime poglavja">
                     <button >SHRANI</button>
                 </form>
             </div>
@@ -44,8 +44,12 @@
                     <button type="button">IZBRŠI poglavje '{{poglavje.ime.upper()}}'</button>
                 </a>
             </div>
+            
             <div class="gumb-levo">
-                <a href="/{{id_predmeta}}/"><button type="button">NAZAJ</button></a>
+                <a href="/odjava/"><button type="button">ODJAVA</button></a> <br>
+            </div>
+            <div class="gumb-levo-nizje">
+                <a href="/{{id_predmeta}}/"><button class="nizje" type="button">NAZAJ</button></a>
             </div>
             
         </div>

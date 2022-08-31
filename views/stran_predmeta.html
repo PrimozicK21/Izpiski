@@ -12,23 +12,24 @@
         <div class="modra-senca">
             <h2>Seznam poglavij:</h2>
         </div>
+        <div class="krepko">
+            <ul>
+                %id_predemta = ucilnica.seznam.index(predmet)
+                %for id_poglavja, poglavje in enumerate(predmet.seznam):
+                    <li>
+                        <a href="/{{id_predmeta}}/{{id_poglavja}}/">{{poglavje.ime}}</a>
+                    </li> 
+                %end
+            </ul>
+        </div>
         
-        <ul>
-            %id_predemta = ucilnica.seznam.index(predmet)
-            %for id_poglavja, poglavje in enumerate(predmet.seznam):
-                <li>
-                    <a href="/{{id_predmeta}}/{{id_poglavja}}/">{{poglavje.ime}}</a>
-                </li> 
-            %end
-        </ul>
-        
-        <form action="/{{id_predmeta}}/dodaj_poglavje/", method="POST", accept-charset="utf-8">
-            <input type="text", name="ime", placeholder="Ime poglavja">
+        <form action="/{{id_predmeta}}/dodaj_poglavje/" method="POST" accept-charset="utf-8">
+            <input type="text" name="ime" placeholder="Ime poglavja">
             <button>DODAJ</button>
         </form>
         <div class="gumb-sredina-z">
-            <form action="/{{id_predmeta}}/preimenuj/", method="POST", accept-charset="utf-8">
-                <input type="text", name="novo_ime", placeholder="Spremeni ime predmeta">
+            <form action="/{{id_predmeta}}/preimenuj/" method="POST" accept-charset="utf-8">
+                <input type="text" name="novo_ime" placeholder="Spremeni ime predmeta">
                 <button>SHRANI</button>
             </form>
         </div>
@@ -38,6 +39,9 @@
             </a>
         </div>
         <div class="gumb-levo">
+            <a href="/odjava/"><button type="button">ODJAVA</button></a>
+        </div>
+        <div class="gumb-levo-nizje">
             <a href="/"><button type="button">NAZAJ</button></a>
         </div>
     </div> 

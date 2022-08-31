@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+%rebase('base.html', title="Ucilnica")
+
+
+
+<body>
+<div class="odzadje">
+    <div class="levi_rob">
+        <div class="prosojno">
+            <h1>Dobrodošli v učilnici</h1>
+            <div class="modra-senca">
+                <h2>Tu je vaš seznam predmetov: </h2>
+            </div>
+            <div class= "seznam_predmetov">
+                <div class="krepko">
+                    <ul>
+                    %for id_predmeta, predmet in enumerate(ucilnica.seznam):
+                        <li>
+                            <a href="/{{id_predmeta}}/">{{predmet.ime}}</a>
+                        </li>
+                    %end
+                    </ul>
+                </div>
+                    <div class="srednja-velikost">
+
+                            <form action="/dodaj_predmet/" method="POST" accept-charset="utf-8">
+                                <input type="text" name="ime" placeholder="Ime predmeta">
+                                <button>DODAJ</button>
+                            </form>
+
+                            <div class="gumb-levo">
+                                <a href="/odjava/"><button type="button">ODJAVA</button></a>
+                            </div>
+                    
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+
+
+%end
+
+</html>
