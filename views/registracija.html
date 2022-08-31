@@ -1,19 +1,39 @@
-<!DOCTYPE html>
-<html>
 
+<!DOCTYPE html>
+
+<html>
 %rebase('base.html', title="Prijava")
 
-<div class="prijava">
-    <div class="okvir">
-        <form class="obrazec" method="POST">
-            <input type="text" name="uporabnisko_ime" placeholder="Uporabniško ime" class="obrazec-vstavi">
-            <input type="password" name="geslo1" placeholder="Geslo" class="obrazec-vstavi">
-            <input type="password" name="geslo2" placeholder="Ponovno geslo" class="obrazec-vstavi">
-            <input type="submit">
-        </form>
-        <a href="/prijava/"><button type="button" class="gumb">Registracija</button></a>
+<div class="uvod">
+    <p>
+        Ustvarite si <span>PERSONALIZIRANE IZPISKE</span> šolske snovi,<br> ki bodo vedno z vami na telefonu<br> in boste lahko osvežili snov kadarkoli boste želeli.
+    </p>
+</div>
+
+<form method="post">
+
+<div class="container">
+    <div class="obrazec">
+        <h2>REGISTRACIJA</h2> 
+        <label for="uporabnisko_ime"><b>Uporabniško ime:</b></label>
+        <input type="text" name="uporabnisko_ime" required> <br>
+
+        <label for="geslo"><b>Geslo:</b></label>
+        <input type="password" name="geslo1" required> <br>
+        <label for="geslo"><b>Potrdite geslo:</b></label>
+        <input type="password" name="geslo2" required> <br>
+        
+        <button type="submit">Registriraj me</button>
+    </div>
+
+
+
+
+    <div class="gumb_za_p_ali_r">
+        <a href="/prijava/"> <button  type="button"> Prijava </button> </a>
     </div>
 </div>
-%end
+</form>
 
+%end
 </html>

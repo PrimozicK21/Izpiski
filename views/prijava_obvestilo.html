@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html>
+%rebase('base.html', title="Prijava")
+
+
+<div class="obvestila">
+    <p>
+        ⚠️ <u>Napačno uporabniško ime ali geslo</u> ⚠️
+    </p>
+</div>
+
+<form method="post">
+
+<div class="container">
+    <div class="obrazec">
+        <h2>PRIJAVA</h2> 
+        <label for="uporabnisko_ime"><b>Uporabniško ime:</b></label>
+        <input type="text" name="uporabnisko_ime" required> <br>
+
+        <label for="geslo"><b>Geslo:</b></label>
+        <input type="password" name="geslo" required> <br>
+        
+        <button type="submit">Prijavi me</button>
+    </div>
+
+
+
+
+    <div class="gumb_za_p_ali_r">
+        <a href="/registracija/"> <button  type="button"> Registracija </button> </a>
+    </div>
+</div>
+</form>
+
+%end
+</html>
