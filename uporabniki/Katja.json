@@ -1,0 +1,88 @@
+{
+    "ime": "Učilnica",
+    "seznam": [
+        {
+            "ime": "Analiza",
+            "seznam": [
+                {
+                    "ime": "Odvodi",
+                    "seznam": [
+                        {
+                            "ime": "_krizec_f zvezna in strogo monotona na [a, b] in odvedljiva v c ter f'(c) =/= 0 =>",
+                            "odgovor": "inverzna funkcija f odvedljiva v f(c)"
+                        },
+                        {
+                            "ime": "_krizec_f odvedljiva v a =>",
+                            "odgovor": "f zvezna v a"
+                        },
+                        {
+                            "ime": "_krizec_ROLLE: f zvezna na [a,b], odvedljiva na (a,b) in f(a) = f(b) =>",
+                            "odgovor": "obstaja c z intervala (a,b), da velja: f'(c) = 0"
+                        },
+                        {
+                            "ime": "_kljukica_LAGRANGE: f zvezna na [a,b], odvedljiva na (a,b) =>",
+                            "odgovor": "obstaja c z intervala (a,b), da velja: f(b) - f(a) = f'(c)*(b - a)"
+                        },
+                        {
+                            "ime": "_krizec_f'(x) >= 0 <=>",
+                            "odgovor": "f naraščajoča"
+                        },
+                        {
+                            "ime": "_krizec_f'(x) > 0 =>",
+                            "odgovor": "f STROGO naraščajoča"
+                        }
+                    ]
+                },
+                {
+                    "ime": "Metrični prostori",
+                    "seznam": [
+                        {
+                            "ime": "_krizec_3 lastnosti metričnih prostorov",
+                            "odgovor": "pozitivna definitnost, simetričnost, trikotniška neenakost"
+                        },
+                        {
+                            "ime": "_kljukica_______ (unija/presek) ________(končnega/poljubnega) števila odprtih množic je odprta množica",
+                            "odgovor": "unija poljubnega oz. presek končnega"
+                        },
+                        {
+                            "ime": "_krizec_Množica A je zaprta <=>",
+                            "odgovor": "vsebuje vsa svoja stekališča"
+                        },
+                        {
+                            "ime": "_kljukica_Kdaj je metrični prostor POLEN?",
+                            "odgovor": "Ko vsa njegova Cauchyjeva zaporedja tudi konvergirajo."
+                        },
+                        {
+                            "ime": "_krizec_Množica K je kompakta =>",
+                            "odgovor": "zaprta in omejena"
+                        },
+                        {
+                            "ime": "_krizec_HEINE-BOREL:",
+                            "odgovor": "Za zgornji izrek, ko je množica K podmnožica metričnega prostora nad R^n, velja <=>"
+                        },
+                        {
+                            "ime": "_kljukica_Vsak kompaktem metrični prostor je _____.",
+                            "odgovor": "polen"
+                        },
+                        {
+                            "ime": "_kljukica_Ponovi definicijo zveznosti v metričnih prostorih!",
+                            "odgovor": ""
+                        },
+                        {
+                            "ime": "_kljukica_Zvezna preslikava slika kompaktne množice v _________.",
+                            "odgovor": "kompaktne"
+                        },
+                        {
+                            "ime": "_krizec_BANACHOV PROSTOR:",
+                            "odgovor": "Naj bo (x,|*|) normiran vektorski prostor. Če je x z inducirano metriko POLN, ga imenujemo Banachov prostor."
+                        },
+                        {
+                            "ime": "_krizec_HILBERTOV PROSTOR:",
+                            "odgovor": "Če je realen vektorski prostor v metriki, ki je porojena s skalarnim produktom POLN, ga imenujemo Hilbertov prostor."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

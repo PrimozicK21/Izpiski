@@ -64,11 +64,11 @@ def ponudi_moznosti_za_normalen_seznam(seznam_moznosti):
             print(f"Vnesiti morate celo število med 1 in {len(seznam_moznosti)}.")
 
 #tip_razreda = ["predmet", "poglavje", "alineja"]
-# izbire______________________________________________________________________________________________________             
+# IZBIRE______________________________________________________________________________________________________             
 def izberi_iz_razreda(razred, tip_razreda, ucilnica=ucilnica):  #ucilnica=ucilnica, da ti spremenljivko poveze s pojmom ucilnica, ki je definiran na zacetku
     print(razred.ime.upper())                          
     
-    #pojmi_v_seznam-----------------------------------------------------------
+    #dodaj_pojme_v_seznam-----------------------------------------------------------
     seznam_iz_razreda = []
     for element_seznama in razred.seznam:
         seznam_iz_razreda.append(element_seznama.ime)
@@ -85,7 +85,7 @@ def izberi_iz_razreda(razred, tip_razreda, ucilnica=ucilnica):  #ucilnica=ucilni
     izbran_element = ponudi_moznosti_za_normalen_seznam(seznam_iz_razreda)
     
     
-    #nadaljuj_po_kategorijah-------------------------------------------------
+    #nadaljuj_z_izbiro_po_kategorijah-------------------------------------------------
     for element_seznama in razred.seznam:
         if element_seznama.ime == izbran_element:
             if tip_razreda == "predmet":
@@ -174,7 +174,7 @@ def izberi_iz_razreda(razred, tip_razreda, ucilnica=ucilnica):  #ucilnica=ucilni
             poglavje = dodaj_poglavje(izbran_element)
             izberi_iz_razreda(poglavje, "alineje")
                     
-#dodaj___________________________________________________________________________________________________________________       
+#DODAJ___________________________________________________________________________________________________________________       
 def dodaj_predmet():                             #ne rabis spremenljivke, ker obstaja samo ena ucilnica
     ime_predmeta = input("Ime predmeta: ")
     predmet = Predmet(ime_predmeta, [])
@@ -196,7 +196,7 @@ def dodaj_alinejo(poglavje):
     alineja = Alineja(vprasanje, odgovor)
     poglavje.dodaj(alineja)
     return poglavje
-#brisanje____________________________________________________________________________________________________________
+#BRISANJE____________________________________________________________________________________________________________
 def izbrisi_podrazred(razred, tip_podrazreda):
     seznam_imen_podrazredov = []
     for podrazred in razred.seznam:
@@ -223,7 +223,7 @@ def izbrisi_podrazred(razred, tip_podrazreda):
         elif ste_prepricani == "n":
             return razred
         
-#tekstovni vmesnik____________________________________________________________________________________________________
+#TEKSTOVNI VMESNIK____________________________________________________________________________________________________
 zacetne_moznosti = [(vpis, "vpis"), (registracija, "registracija"), (izhod, "izhod")]
 
 def tekstovni_vmesnik():

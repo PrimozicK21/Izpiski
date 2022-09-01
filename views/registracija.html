@@ -6,33 +6,29 @@
 
 <div class="uvod">
     <p>
-        Ustvarite si <span>PERSONALIZIRANE IZPISKE</span> šolske snovi,<br> ki bodo vedno z vami na telefonu<br> in boste lahko osvežili snov kadarkoli boste želeli.
+        >>Ustvarite si <span>PERSONALIZIRANE IZPISKE</span> šolske snovi,<br> ki bodo vedno z vami na aplikaciji<br> in boste lahko osvežili snov kadarkoli boste želeli.<<
     </p>
 </div>
 
 <form method="post">
+    <div class="container">
+        <div class="obrazec">
+            <h2>REGISTRACIJA</h2> 
+            <label for="uporabnisko_ime"><b>Uporabniško ime:</b></label>
+            <input type="text" name="uporabnisko_ime" required> <br>
 
-<div class="container">
-    <div class="obrazec">
-        <h2>REGISTRACIJA</h2> 
-        <label for="uporabnisko_ime"><b>Uporabniško ime:</b></label>
-        <input type="text" name="uporabnisko_ime" required> <br>
+            <label for="geslo"><b>Geslo:</b></label>
+            <input type="password" name="geslo1" required> <br>
 
-        <label for="geslo"><b>Geslo:</b></label>
-        <input type="password" name="geslo1" required> <br>
-        <label for="geslo"><b>Potrdite geslo:</b></label>
-        <input type="password" name="geslo2" required> <br>
-        
-        <button type="submit">Registriraj me</button>
+            <label for="geslo"><b>Potrdite geslo:</b></label>
+            <input type="password" name="geslo2" required> <br>
+            
+            <button type="submit">Registriraj me</button>
+        </div>
+        <div class="gumb_za_p_ali_r">
+            <a href="/prijava/"> <button  type="button"> Prijava </button> </a>
+        </div>
     </div>
-
-
-
-
-    <div class="gumb_za_p_ali_r">
-        <a href="/prijava/"> <button  type="button"> Prijava </button> </a>
-    </div>
-</div>
 </form>
 
 %end

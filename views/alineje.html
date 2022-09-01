@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html>
 %rebase('base.html', title="Predmet")
-
-<head>
-    <title>Učilnica</title>
-</head>
-
 <body>
     <div class="odzadje">
         <div>
@@ -39,31 +34,26 @@
                     %end
                 </ul>
             </div>
-            <!-- <div class="gumb-sredina">
-                <a href="/{{id_predmeta}}/{{id_poglavja}}/preimenuj/"><button type="button">PREIMENUJ</button>nazaj</a>
-            </div> -->
-            <div class="gumb-sredina-z">
+            <div class="gumb-sredina-zgoraj">
                 <form action="/{{id_predmeta}}/{{id_poglavja}}/preimenuj/" method="POST" accept-charset="utf-8">
                     <input type="text" name="novo_ime" placeholder="Spremeni ime poglavja">
                     <button >SHRANI</button>
                 </form>
             </div>
-            <div class="gumb-sredina-s">
+            <div class="gumb-sredina-spodaj">
                 <a href="/{{id_predmeta}}/{{id_poglavja}}/izbrisi_poglavje/">
                     <button type="button">IZBRŠI poglavje '{{poglavje.ime.upper()}}'</button>
                 </a>
             </div>
 
-            <div class="gumb-levo">
+            <div class="gumb-levo-zgoraj">
                 <a href="/odjava/"><button type="button">ODJAVA</button></a> <br>
             </div>
-            <div class="gumb-levo-nizje">
+            <div class="gumb-levo-spodaj">
                 <a href="/{{id_predmeta}}/{{id_poglavja}}/"><button type="button">NAZAJ</button></a>
             </div>
-            
         </div>
     </div>
 </body>
-
 %end
 </html>
