@@ -1,4 +1,6 @@
 # Izpiski
-Projektna naloga pri Uvodu v programiranje
+## Projektna naloga pri Uvodu v programiranje 2022, Katja Primožič
 
-Bom še napisala.
+Projektna naloga je bila sprva zasnovana kot dodaten način, kako bi si učenci, lažje zapomnili informacije, ki jih pridobijo na inštrukcijah za razne predmete. Kajti da podatki, ki jih pridobimo pri določeni šolski snovi, preidejo iz kratkoročnega v dolgoročen spomin, jih je potrebno na začetku pogosto osvežiti. A za sprotno učenje - predvsem za predmete, ki nam povzročajo večje težave - velikokrat zmanjka časa in tako nekateri učenci na naslednji uri inšturkcij pozabijo osnove, ki so se jih naučili na pejšnjih. V aplikacijo lahko vsak uporabnik vnese imena predmetov, poglavij in zatem ključne informacije, ki bi jih želel ponavljati ter označi, katere že zna in katerih še ne. S tem ustvari _personalizirane izpiske_, ki jih ima vedno s seboj in lahko preveri svoje znanje kadarkoli želi. Cilj aplikacije je, da bi si uporabnik po vsaki uri inštrukcij zapisal vsaj pet novih dejstev/ pravil, ki jih mora do naslednjič osvojiti in bi s tem lažje razumel sprotno snov.
+
+Seveda pa se lahko aplikacija uporablja tudi za delanje sprotnih izpiskov, kot je na primer primer, do katerega lahko dostopate z uporabniškim imenom "Katja" ter geslom "ja".
